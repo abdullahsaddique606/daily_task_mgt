@@ -1,16 +1,24 @@
-# flutter_firebase_connection
+# Daily Task Management App
 
-A new Flutter project.
+A Flutter-based task management app that helps users efficiently organize and manage their daily tasks. Users can add, update, delete, and mark tasks as complete or incomplete. This app provides a simple interface for productivity and effective task management.
+
+## Features
+
+- **Add New Tasks**: Users can create tasks with relevant details such as title, description, and deadline.
+- **Update Tasks**: Users can edit existing tasks to adjust the details.
+- **Delete Tasks**: Remove tasks that are no longer needed.
+- **Mark as Complete/Incomplete**: Toggle tasks between completed and pending states.
+- **View Tasks**: Display a list of all tasks, categorized by their completion status.
+
+## Requirements
+
+- **Flutter**: 3.0.0 or higher
+- **Dart**: 2.17.0 or higher
+- **Development Environment**: Any Flutter-compatible IDE (e.g., Android Studio, VS Code)
 
 ## Getting Started
 
-This project is a starting point for a Flutter application.
+1. Clone the repository:
+   ```bash
+   git clone https://github.com/abdullahsaddique606/daily_task_mgt.git
 
-A few resources to get you started if this is your first Flutter project:
-
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
-
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
