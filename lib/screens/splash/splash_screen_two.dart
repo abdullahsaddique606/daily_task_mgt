@@ -1,11 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_connection/constants/utils.dart';
-import 'package:flutter_firebase_connection/screens/splash/splash_screen_two.dart';
 
 class SplashScreenTwo extends StatelessWidget {
   final PageController controller;
 
-  SplashScreenTwo(this.controller);
+  const SplashScreenTwo(this.controller, {super.key});
 
   @override
   Widget build(BuildContext context) {
@@ -23,11 +22,11 @@ class SplashScreenTwo extends StatelessWidget {
           Column(
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              SizedBox(
+              const SizedBox(
                 height: 40,
               ),
-              Padding(
-                padding: const EdgeInsets.only(left: 27.0),
+              const Padding(
+                padding: EdgeInsets.only(left: 27.0),
                 child: Text(
                   'Easily Add Your Tasks',
                   style: TextStyle(
@@ -36,7 +35,7 @@ class SplashScreenTwo extends StatelessWidget {
                   ),
                 ),
               ),
-              SizedBox(
+              const SizedBox(
                 height: 60,
               ),
               Row(
@@ -45,7 +44,7 @@ class SplashScreenTwo extends StatelessWidget {
                   Padding(
                     padding: const EdgeInsets.only(left: 27.0),
                     child: GestureDetector(
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Icon(Icons.arrow_back),
@@ -59,13 +58,13 @@ class SplashScreenTwo extends StatelessWidget {
                           ],
                         ),
                         onTap: () => controller.previousPage(
-                            duration: Duration(microseconds: 300),
+                            duration: const Duration(microseconds: 300),
                             curve: Curves.easeInOut)),
                   ),
                   Padding(
                     padding: const EdgeInsets.only(right: 27.0),
                     child: GestureDetector(
-                        child: Row(
+                        child: const Row(
                           mainAxisAlignment: MainAxisAlignment.end,
                           children: [
                             Text("Next",
@@ -78,7 +77,9 @@ class SplashScreenTwo extends StatelessWidget {
                             Icon(Icons.arrow_forward)
                           ],
                         ),
-                        onTap: () => controller.nextPage(duration: Duration(microseconds: 300), curve: Curves.easeInOut)),
+                        onTap: () => controller.nextPage(
+                            duration: const Duration(microseconds: 300),
+                            curve: Curves.easeInOut)),
                   ),
                 ],
               ),

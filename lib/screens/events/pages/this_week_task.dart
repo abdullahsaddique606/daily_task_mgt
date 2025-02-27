@@ -2,12 +2,12 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_firebase_connection/constants/utils.dart';
-import 'package:flutter_firebase_connection/screens/events/controllers/task_selection_controller.dart';
+
 import 'package:get/get.dart';
 import 'package:intl/intl.dart';
 
 class ThisWeekTasks extends StatefulWidget {
-  ThisWeekTasks({super.key});
+  const ThisWeekTasks({super.key});
 
   @override
   _ThisWeekTasksState createState() => _ThisWeekTasksState();
@@ -47,12 +47,12 @@ class _ThisWeekTasksState extends State<ThisWeekTasks> {
     if (querySnapshot.docs.isEmpty) {
       print("No data for selected date");
     } else {
-      List<Map<String, dynamic>> _tempTasks = [];
-      querySnapshot.docs.forEach((document) {
-        _tempTasks.add(document.data() as Map<String, dynamic>);
-      });
+      List<Map<String, dynamic>> tempTasks = [];
+      for (var document in querySnapshot.docs) {
+        tempTasks.add(document.data() as Map<String, dynamic>);
+      }
       setState(() {
-        _tasks = _tempTasks;
+        _tasks = tempTasks;
       });
     }
   }
@@ -73,7 +73,7 @@ class _ThisWeekTasksState extends State<ThisWeekTasks> {
     return Scaffold(
       appBar: AppBar(
         leading: IconButton(
-          icon: Icon(
+          icon: const Icon(
             Icons.arrow_back,
             color: Colors.black,
           ),
@@ -81,7 +81,7 @@ class _ThisWeekTasksState extends State<ThisWeekTasks> {
         ),
         backgroundColor: Colors.transparent,
         elevation: 0,
-        title: Text(
+        title: const Text(
           "This week",
           style: TextStyle(color: Colors.black, fontSize: 16),
         ),
@@ -90,7 +90,7 @@ class _ThisWeekTasksState extends State<ThisWeekTasks> {
         color: Colors.grey[200],
         child: Column(
           children: [
-            Container(
+            SizedBox(
               height: Utils.height(0.2, context), // Adjust height as needed
               child: ListView.builder(
                 scrollDirection: Axis.horizontal,
@@ -98,14 +98,13 @@ class _ThisWeekTasksState extends State<ThisWeekTasks> {
                 itemBuilder: (context, index) {
                   DateTime day = daysOfWeek[index];
                   bool isSelectedDay =
-                  _selectedTaskIds
-                      .contains(day.toString());
+                      _selectedTaskIds.contains(day.toString());
                   String formattedSelectedDate =
-                  DateFormat('yyyy-MM-dd').format(day);
+                      DateFormat('yyyy-MM-dd').format(day);
                   return GestureDetector(
                     onTap: () {
                       debugPrint(
-                          "item selected date is : ${formattedSelectedDate} ");
+                          "item selected date is : $formattedSelectedDate ");
 
                       _getTaskOfDay(formattedSelectedDate);
                     },
@@ -118,8 +117,7 @@ class _ThisWeekTasksState extends State<ThisWeekTasks> {
                             height: Utils.height(0.1, context),
                             width: Utils.width(0.150, context),
                             decoration: BoxDecoration(
-                              color:
-                              isSelectedDay ? Colors.red : Colors.white,
+                              color: isSelectedDay ? Colors.red : Colors.white,
                               borderRadius: BorderRadius.circular(8),
                             ),
                             child: Column(
@@ -134,7 +132,7 @@ class _ThisWeekTasksState extends State<ThisWeekTasks> {
                                         : Colors.black,
                                   ),
                                 ),
-                                SizedBox(height: 5),
+                                const SizedBox(height: 5),
                                 Text(
                                   dayFormat.format(day),
                                   style: TextStyle(
@@ -165,50 +163,55 @@ class _ThisWeekTasksState extends State<ThisWeekTasks> {
                 },
               ),
             ),
-            SizedBox(
+            const SizedBox(
               height: 20,
             ),
-            Container(
+            SizedBox(
               height: Utils.height(0.2, context),
               //color: Colors.white,
-              child: _tasks.isEmpty ? Center(child: Text("No Task found"),) :
-              ListView.builder(itemCount:_tasks.length, itemBuilder: (context, index) {
-                return ListTile(
-                  title: Text(_tasks[index]['taskName']),
-                  subtitle: Column(
-                    crossAxisAlignment:
-                    CrossAxisAlignment.start,
-                    children: [
-                      Row(
-                        children: [
-                          Icon(Icons.type_specimen_outlined),
-                          SizedBox(width: 5),
-                          Text(_tasks[index]['type']),
-                          SizedBox(width: 10),
-                          Icon(Icons.watch_later_outlined),
-                          SizedBox(width: 5),
-                          Text(_tasks[index]['time']),
-                          SizedBox(width: 5),
-                          _tasks[index]['isCompleted'] == true ?
-                            Text(
-                              'Completed',
-                              style: TextStyle(
-                                color: Colors.green,
-                                fontWeight: FontWeight.bold,
+              child: _tasks.isEmpty
+                  ? const Center(
+                      child: Text("No Task found"),
+                    )
+                  : ListView.builder(
+                      itemCount: _tasks.length,
+                      itemBuilder: (context, index) {
+                        return ListTile(
+                          title: Text(_tasks[index]['taskName']),
+                          subtitle: Column(
+                            crossAxisAlignment: CrossAxisAlignment.start,
+                            children: [
+                              Row(
+                                children: [
+                                  const Icon(Icons.type_specimen_outlined),
+                                  const SizedBox(width: 5),
+                                  Text(_tasks[index]['type']),
+                                  const SizedBox(width: 10),
+                                  const Icon(Icons.watch_later_outlined),
+                                  const SizedBox(width: 5),
+                                  Text(_tasks[index]['time']),
+                                  const SizedBox(width: 5),
+                                  _tasks[index]['isCompleted'] == true
+                                      ? const Text(
+                                          'Completed',
+                                          style: TextStyle(
+                                            color: Colors.green,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        )
+                                      : const Text(
+                                          'Uncompleted',
+                                          style: TextStyle(
+                                            color: Colors.green,
+                                            fontWeight: FontWeight.bold,
+                                          ),
+                                        ),
+                                ],
                               ),
-                            ): Text(
-                            'Uncompleted',
-                            style: TextStyle(
-                              color: Colors.green,
-                              fontWeight: FontWeight.bold,
-                            ),
+                            ],
                           ),
-                        ],
-                      ),
-                    ],
-                  ),
-                );
-              }),
+                        );
+                      }),
             )
           ],
         ),
