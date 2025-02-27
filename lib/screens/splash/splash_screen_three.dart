@@ -1,7 +1,7 @@
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart ';
 import 'package:flutter_firebase_connection/constants/utils.dart';
-import 'package:flutter_firebase_connection/firebase_services/splash_services.dart';
+import 'package:flutter_firebase_connection/services/splash_services.dart';
 import 'package:flutter_firebase_connection/screens/auth/login_screen.dart';
 import 'package:flutter_firebase_connection/screens/landing/landing_page.dart';
 import 'package:flutter_firebase_connection/widgets/round_button.dart';
